@@ -29,3 +29,6 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+/app/views/top/index.html copy.erb
+/app/assets/stylesheets/top copy.scss

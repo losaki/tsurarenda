@@ -1,3 +1,50 @@
-// Place all the styles related to the top controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.randomWrap {
+  text-align: center;
+  background-color: #ccc;
+  position:relative;
+  height: 500px;
+  width: 500px;
+  margin:5% auto;
+}
+
+#randomMove2 {
+  position: absolute;
+  transition: .1s;
+  transform: translate(-50%, -50%);
+
+  width : 50px;
+  height: 50px;
+  z-index: 50;
+
+
+}
+
+#btn_count_up {
+  display: block;
+  height: 100%;
+  border-radius: 100%;
+  background-color: #202020;
+  color: #EEE;
+  line-height: 52px;
+}
+
+
+#disp_count {
+      background-color: #0A3;
+      color: #FFF;
+      font-size: 32px;
+      border-radius: 10px;
+      padding: 0px;
+      display: table-cell;
+      opacity: 0.9;
+      width: 85%;
+}
+#btn_count_up:hover { background-color:#F30 }
+
+.blink{
+  animation: blink 1s infinite;
+}
+@keyframes blink{
+  0% {font-weight: 100;}
+  100% {font-weight: 700;}
+}

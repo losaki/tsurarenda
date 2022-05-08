@@ -1,0 +1,123 @@
+<div class="randomWrap">
+  <p class="result"></p>
+    <div id="randomMove2"><p id="btn_count_up">つら</p></div>
+  <p class="countDisplay blink" id="disp_count">動き回る「つらボタン」を</br>押しまくれ！！</p>
+</div>
+
+<script>
+const body = document.querySelector("body");
+const randomWrap = document.querySelector(".randomWrap");
+const countDisplay = document.querySelector(".countDisplay");
+const result = document.querySelector(".result");
+const button = document.getElementById("randomMove2")
+const buttonText = document.getElementById("btn_count_up")
+
+const eventType = window.ontouchstart !== null ? "click" : "touchstart";
+
+let count = 0;
+// クリックカウントします
+  const addCount = function (e) {
+
+    // オブジェクトと変数の準備
+    var count_disp = document.getElementById("disp_count");
+    var count_up_btn = document.getElementById("btn_count_up");
+    var count_value = 0;
+
+    // カウントアップボタンクリック処理
+    count_up_btn.onclick = function (){
+          count_value = count++ ;
+          count_disp.innerHTML = count_value;
+    };
+    // カウントアップボタンのマウスダウン処理
+    count_up_btn.onmousedown = function() {
+          count_up_btn.style.backgroundColor = "#00FF00";
+    }
+    // カウントアップボタンのマウスアップ処理
+    count_up_btn.onmouseup = function() {
+          count_up_btn.style.backgroundColor = "";
+    }
+
+
+
+};
+
+
+function randomMove2(id) {
+  var randomElm = document.getElementById(id);
+
+  var randomTop = 50;
+  var randomLeft = 50;
+
+  randomElm.style.top = randomTop + "%";
+  randomElm.style.left = randomLeft + "%";
+
+  var timer= setInterval(function() {
+
+    if(Math.random() * 2 < 1) {
+      randomTop++;
+    } else {
+      randomTop--;
+    };
+
+    if(randomTop === 0) {
+      randomTop = 5;
+    }
+    if(randomTop === 100) {
+      randomTop = 95;
+    }
+
+    if(Math.random() * 2 < 1) {
+      randomLeft++;
+    } else {
+      randomLeft--;
+    };
+
+    if(randomLeft === 0) {
+      randomLeft = 5;
+    }
+    if(randomLeft === 100) {
+      randomLeft = 95;
+    }
+
+  randomElm.style.left = randomLeft + "%";
+  randomElm.style.top = randomTop + "%";
+  }, 50);
+};
+
+randomMove2("randomMove2");
+
+
+
+
+
+const shrinkAnim = function () {
+  countDisplay.classList.remove("blink");
+  body.removeEventListener(eventType, shrinkAnim);
+  body.addEventListener(eventType, addCount);
+  randomWrap
+    .animate({
+        opacity: [1, 0.5, 1],
+        offset: [0, 0.9],
+      },
+      { duration: 10000, fill: "forwards" }
+    )
+    .finished // ゲーム終了後の処理
+    .then(() => {
+      countDisplay.innerHTML = 'あなたの記録は' + count + '回でした！';
+      countDisplay.style.opacty = 1;
+      countDisplay.style.fontSize = '60px';
+      countDisplay.style.zIndex = 51;
+      button.style.height = '0px';
+      button.style.width = '0px';
+      buttonText.innerHTML = '';
+      body.removeEventListener(eventType, addCount);
+      result.textContent = "Click to return";
+      result.classList.add("blink");
+      result.addEventListener("click", () => {
+        location.reload();
+      });
+    });
+};
+
+body.addEventListener(eventType, shrinkAnim);
+</script>
