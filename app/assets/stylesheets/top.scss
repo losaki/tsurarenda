@@ -6,7 +6,13 @@ body{
   -khtml-user-select:none;
   -webkit-user-drag:none;
   -khtml-user-drag:none;
+  background-image: url("tsura.png");
+  background-repeat: round;
   }
+
+header {
+  display: flex;
+}
 
 .randomWrap {
   text-align: center;
